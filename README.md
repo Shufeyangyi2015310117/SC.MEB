@@ -13,4 +13,4 @@ install_github("Shufeyangyi2015310117/SC.MEB")
 
 # Demonstration
 
-For an example of typical SC.MEB usage, please see our [Package vignette](https://shufeyangyi2015310117.github.io/SC.MEB/index.html) for a demonstration and overview of the functions included in SC.MEB.
+For an example of typical SC.MEB usage, please see our [Package vignette](https://shufeyangyi2015310117.github.io/SC/articles/SC.MEB.html) for a demonstration and overview of the functions included in SC.MEB.
