@@ -33,7 +33,7 @@ SC-MEB requires minimal data pre-processing, but we provide a helper function to
 
 spatialPreprocess() log-normalizes the count matrix and performs PCA on the top n.HVGs highly variable genes, keeping the top n.PCs principal components. Additionally, the spatial sequencing platform is added as metadata in the SingleCellExperiment for downstream analyses. If you do not wish to rerun PCA, running spatialPreprocess() with the flag skip.PCA=TRUE will only add the metadata SC-MEB requires.
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 set.seed(114)
 library(scuttle)
 library(scran)
