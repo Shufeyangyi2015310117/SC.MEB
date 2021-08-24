@@ -15,6 +15,9 @@ ClusterPlot(out, pos, size = 5, shape = 15)
 
 \item{shape}{is a positive value for characterizing the shape of point in the plot, which is the same as shape in ggplot2.}
 }
+\value{
+a ggplot2 object.
+}
 \description{
 The function ClusterPlot is used to Visualize spatial clusters.
 }

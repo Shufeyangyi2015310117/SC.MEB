@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="parafun. — parafun" />
-<meta property="og:description" content="parafun implements the model SC-MEB for fixed number of clusters" />
+<meta property="og:description" content="The function parafun implements the model SC-MEB for fixed number of clusters and a sequence of beta with initial value from Gaussian mixture model" />
 
 
 
@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SC.MEB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
     </div>
 
     <div class="ref-description">
-    <p>parafun implements the model SC-MEB for fixed number of clusters</p>
+    <p>The function parafun implements the model SC-MEB for fixed number of clusters and a sequence of beta with initial value from Gaussian mixture model</p>
     </div>
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>parafun</span><span class='op'>(</span>
@@ -148,7 +148,15 @@
     </tr>
     <tr>
       <th>G</th>
-      <td><p>is an integer specifying the numbers of mixture components (clusters) for which the BIC is to be calculated. The default is K = 2:9.</p></td>
+      <td><p>is an integer specifying the numbers of clusters.</p></td>
+    </tr>
+    <tr>
+      <th>beta_grid</th>
+      <td><p>is a numeric vector specifying the smoothness parameter of Random Markov Field. The default is seq(0,4,0.2).</p></td>
+    </tr>
+    <tr>
+      <th>PX</th>
+      <td><p>is a logical value specifying the parameter expansion in EM algorithm.</p></td>
     </tr>
     <tr>
       <th>maxIter_ICM</th>
@@ -162,27 +170,19 @@
       <th>Adj_sp</th>
       <td><p>is a sparse matrix of neighborhood.</p></td>
     </tr>
-    <tr>
-      <th>platform</th>
-      <td><p>is the name of spatial transcriptomic platform. Specify 'Visium' for hex lattice geometry or 'ST' for square lattice geometry. Specifying this parameter is optional as this information is included in their metadata.</p></td>
-    </tr>
-    <tr>
-      <th>bet_grid</th>
-      <td><p>is a numeric vector specifying the smoothness parameter of Random Markov Field. The default is seq(0,4,0.2).</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a list, We briefly explain the output of the SC.MEB.</p> 
 <p>The item 'x' storing clustering results.</p>
-<p>The item 'BIC' contains all BIC value.</p>
+<p>The item 'gam' is the posterior probability matrix.</p>
 <p>The item 'ell' is the opposite log-likelihood.</p>
 <p>The item 'mu' is the mean of each component.</p>
 <p>The item 'sigma' is the variance of each component.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>SC.MEB implements the model SC-MEB, spatial clustering with hidden Markov random field using empirical Bayes.</p>
+    <p>The function parafun implements the model SC-MEB for fixed number of clusters and a sequence of beta with initial value from Gaussian mixture model</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

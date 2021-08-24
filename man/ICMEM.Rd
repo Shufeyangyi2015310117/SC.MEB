@@ -30,7 +30,7 @@ ICMEM(
 
 \item{alpha}{is a intercept.}
 
-\item{beta_grid}{is a smoothing parameter that can be specified by user.}
+\item{beta_grid}{is a sequence of smoothing parameter that can be specified by user.}
 
 \item{PX}{is a logical value specifying the parameter expansion in EM algorithm.}
 
@@ -52,8 +52,8 @@ The item 'mu' is the mean of each component.
 The item 'sigma' is the variance of each component.
 }
 \description{
-ICMEM was used to conduct spatial clustering with hidden Markov random field for fixed beta and fixed number of clusters
+The function ICMEM was used to conduct spatial clustering with hidden Markov random field for a sequence of beta and fixed number of clusters
 }
 \details{
-ICMEM was used to conduct spatial clustering with hidden Markov random field for fixed beta and fixed number of clusters
+The function ICMEM was used to conduct spatial clustering with hidden Markov random field for fixed beta and fixed number of clusters
 }

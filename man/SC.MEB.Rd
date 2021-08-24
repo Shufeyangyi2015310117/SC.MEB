@@ -24,9 +24,9 @@ SC.MEB(
 
 \item{beta_grid}{is a numeric vector specifying the smoothness parameter of Random Markov Field. The default is seq(0,4,0.2).}
 
-\item{K_set}{is an integer vector specifying the numbers of mixture components (clusters) for which the BIC is to be calculated. The default is K = 2:9.}
+\item{K_set}{is an integer vector specifying the numbers of mixture components (clusters) for which the BIC is to be calculated. The default is K = 2:10.}
 
-\item{parallel}{is a logical value to decide whether the function SC.MEB run in parallel. The default is True.}
+\item{parallel}{is a logical value to decide whether the function SC.MEB run in parallel. The default is TRUE.}
 
 \item{num_core}{is an integer value to decide how many cores are used to run SC.MEB in parallel.}
 
@@ -35,21 +35,19 @@ SC.MEB(
 \item{maxIter_ICM}{is the maximum iteration of ICM algorithm. The default is 10.}
 
 \item{maxIter}{is the maximum iteration of EM algorithm. The default is 50.}
-
-\item{platform}{is the name of spatial transcriptomic platform. Specify 'Visium' for hex lattice geometry or 'ST' for square lattice geometry. Specifying this parameter is optional as this information is included in their metadata.}
 }
 \value{
 a list, We briefly explain the output of the SC.MEB. 
  
-The item 'x' is 3-dimensional n-by-b-by-q matrix, storing all clustering results for each K and beta. n is the number of cells, b is the length of vector 'bet', q is the length of vector 'K'. 
+The item 'x' contains clustering results.
 
-The item 'BIC' contains all BIC value for each K and beta. 
+The item 'gam' is the posterior probability matrix.
 
-The item 'ell' is the opposite log-likelihood for each beta and K. 
+The item 'ell' is the opposite log-likelihood. 
 
-The item 'mu' is the mean of each component for each beta and K.
+The item 'mu' is the mean of each component.
 
-The item 'sigma' is the variance of each component for each beta and K.
+The item 'sigma' is the variance of each component.
 }
 \description{
 SC.MEB implements the model SC-MEB, spatial clustering with hidden Markov random field using empirical Bayes.

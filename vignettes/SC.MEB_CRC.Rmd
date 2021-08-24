@@ -56,6 +56,7 @@ maxIter = 50
 ### Fitting the SC-MEB
 #### Calculating the neighborhood
 ```{r message=FALSE, warning=FALSE}
+library(SingleCellExperiment)
 Adj_sp  <- find_neighbors2(CRC, platform = "Visium")
 Adj_sp[1:10,1:10]
 ```
@@ -82,12 +83,12 @@ selectKPlot(fit, K_set = K_set, criterion = "MBIC")
 We can plot the cluster assignments over the spatial locations of the spots with ClusterPlot().
 ```{r message=FALSE, warning=FALSE}
 out = selectK(fit, K_set = K_set, criterion = "BIC")
-pos = matrix(cbind(colData(CRC)[,c(3)],colData(CRC)[,c(4)]), 2988, 2)
+pos = matrix(cbind(colData(CRC)[,c(4)],20000-colData(CRC)[,c(3)]), 2988, 2)
 ClusterPlot(out, pos, size = 3, shape = 16)
 ```
 or
 ```{r message=FALSE, warning=FALSE}
 out = selectK(fit, K_set = K_set, criterion = "MBIC")
-pos = matrix(cbind(colData(CRC)[,c(3)],colData(CRC)[,c(4)]), 2988, 2)
+pos = matrix(cbind(colData(CRC)[,c(4)],20000-colData(CRC)[,c(3)]), 2988, 2)
 ClusterPlot(out, pos, size = 3, shape = 16)
 ```

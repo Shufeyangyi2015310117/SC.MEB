@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SC.MEB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
       </span>
     </div>
 
@@ -146,8 +146,15 @@
       <th>criterion</th>
       <td><p>is a character specifying the criterion for selecting K. The default is BIC, the alternative criterion MBIC can also be used.</p></td>
     </tr>
+    <tr>
+      <th>pen.const</th>
+      <td><p>is a positive value in modified BIC. The default is 1.</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a ggplot2 object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The function selectKPlot is used to demonstrate the scatter plot of BIC or Modified BIC vs K for selecting the best K.</p>

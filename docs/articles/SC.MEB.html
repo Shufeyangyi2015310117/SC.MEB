@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SC.MEB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
       </span>
     </div>
 
@@ -74,7 +74,7 @@
       <h1 data-toc-skip>SC-MEB: installation and simulation</h1>
                         <h4 data-toc-skip class="author">Yi Yang</h4>
             
-            <h4 data-toc-skip class="date">2021-08-22</h4>
+            <h4 data-toc-skip class="date">2021-08-24</h4>
       
       
       <div class="hidden name"><code>SC.MEB.Rmd</code></div>
@@ -222,15 +222,15 @@
 <span class="co">#&gt; Starting parallel computing...</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">fit</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; List of 9</span>
-<span class="co">#&gt;  $ x     : num [1:4900, 1] 2 2 2 2 2 2 2 2 2 2 ...</span>
-<span class="co">#&gt;  $ gam   : num [1:4900, 1:2] 6.36e-97 2.03e-47 2.13e-104 1.19e-110 7.27e-62 ...</span>
-<span class="co">#&gt;  $ pxgn  : num [1:4900, 1:2] 0.5 0.332 0.109 0.109 0.109 ...</span>
-<span class="co">#&gt;  $ pygx  : num [1:4900, 1:2] 240 129 260 281 165 ...</span>
-<span class="co">#&gt;  $ mu    : num [1:15, 1:2] -5.97 -1.53 -1.49 -1.47 -1.54 ...</span>
-<span class="co">#&gt;  $ sigma : num [1:15, 1:15, 1:2] 0.56186 0.01495 0.03121 -0.01422 -0.00108 ...</span>
+<span class="co">#&gt;  $ x     : num [1:4900, 1] 1 1 1 1 1 1 1 1 1 1 ...</span>
+<span class="co">#&gt;  $ gam   : num [1:4900, 1:2] 1 1 1 1 1 1 1 1 1 1 ...</span>
+<span class="co">#&gt;  $ pxgn  : num [1:4900, 1:2] 0.5 0.668 0.891 0.891 0.891 ...</span>
+<span class="co">#&gt;  $ pygx  : num [1:4900, 1:2] 19 22.6 23 30.2 26.1 ...</span>
+<span class="co">#&gt;  $ mu    : num [1:15, 1:2] 1.344 0.32 0.352 0.339 0.321 ...</span>
+<span class="co">#&gt;  $ sigma : num [1:15, 1:15, 1:2] 8.74 2.84 2.8 2.9 2.88 ...</span>
 <span class="co">#&gt;  $ beta  : num 1.4</span>
 <span class="co">#&gt;  $ ell   : num 109003</span>
-<span class="co">#&gt;  $ loglik: num [1:4, 1] 111455 110576 110167 110167</span></code></pre></div>
+<span class="co">#&gt;  $ loglik: num [1:4, 1] 111457 110578 110167 110167</span></code></pre></div>
 <p>Here, We briefly explain the output of the <code>SC.MEB</code>.</p>
 <p>The item ‘x’ is clustering label.</p>
 <p>The item ‘ell’ is the opposite log-likelihood for each beta and K.</p>

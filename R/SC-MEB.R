@@ -8,8 +8,8 @@
 #' @param SCobject is an object generated from SC.MEB function.
 #' @param K_set is a integer vector used in SC.MEB. The default is 2:10
 #' @param criterion is a character specifying the criterion for selecting K. The default value is BIC. The alternative value MBIC can also be used.
-#' @pen.const is a positive value in modified BIC. The default is 1. 
-#' @return a list contains two items. one is for the best K and the other corresponds to clustering labels of n spots.
+#' @param pen.const is a positive value in modified BIC. The default is 1. 
+#' @return a list contains two items. one is for the best K and the other is the clustering labels of n spots.
 #' @export
 selectK <- function(SCobject, K_set = 2:10, criterion = "BIC",  pen.const = 1){
   
@@ -58,6 +58,7 @@ selectK <- function(SCobject, K_set = 2:10, criterion = "BIC",  pen.const = 1){
 #' @param pos is a n-by-2 matrix of position.
 #' @param size is a positive value for characterizing the size of point in the plot, which is the same as size in ggplot2.
 #' @param shape is a positive value for characterizing the shape of point in the plot, which is the same as shape in ggplot2.
+#' @return a ggplot2 object.
 #' @export
 ClusterPlot <- function(out, pos, size = 5, shape = 15){
   
@@ -96,7 +97,8 @@ ClusterPlot <- function(out, pos, size = 5, shape = 15){
 #' @param SCobject is a object generated from SC.MEB function.
 #' @param K_set is the corresponding K_set used in your previous function SC.MEB.
 #' @param criterion is a character specifying the criterion for selecting K. The default is BIC, the alternative criterion MBIC can also be used.
-#' @pen.const is a positive value in modified BIC. The default is 1.  
+#' @param pen.const is a positive value in modified BIC. The default is 1.  
+#' @return a ggplot2 object.
 #' @export
 selectKPlot <- function(SCobject, K_set = 2:10, criterion = "BIC",  pen.const = 1){
   library(ggplot2)
@@ -139,25 +141,24 @@ selectKPlot <- function(SCobject, K_set = 2:10, criterion = "BIC",  pen.const = 
 #' @details SC.MEB can implements the model SC-MEB in parallel which can improve the speed of the computation.
 #' @param y is n-by-d PCs.
 #' @param Adj_sp is a sparse matrix of neighborhood. It is often generated from function find_neighbors2 or getneighborhood_fast.  
-#' @param K_set is an integer vector specifying the numbers of mixture components (clusters) for which the BIC is to be calculated. The default is K = 2:9. 
-#' @param platform is the name of spatial transcriptomic platform. Specify 'Visium' for hex lattice geometry or 'ST' for square lattice geometry. Specifying this parameter is optional as this information is included in their metadata. 
+#' @param K_set is an integer vector specifying the numbers of mixture components (clusters) for which the BIC is to be calculated. The default is K = 2:10. 
 #' @param beta_grid is a numeric vector specifying the smoothness parameter of Random Markov Field. The default is seq(0,4,0.2). 
-#' @param parallel is a logical value to decide whether the function SC.MEB run in parallel. The default is True.
+#' @param parallel is a logical value to decide whether the function SC.MEB run in parallel. The default is TRUE.
 #' @param num_core is an integer value to decide how many cores are used to run SC.MEB in parallel.
 #' @param PX is a logical value to decide whether to use parameter expansion in EM algorithm
 #' @param maxIter_ICM is the maximum iteration of ICM algorithm. The default is 10. 
 #' @param maxIter is the maximum iteration of EM algorithm. The default is 50.
 #' @return a list, We briefly explain the output of the SC.MEB. 
 #'  
-#' The item 'x' is 3-dimensional n-by-b-by-q matrix, storing all clustering results for each K and beta. n is the number of cells, b is the length of vector 'bet', q is the length of vector 'K'. 
+#' The item 'x' contains clustering results.
 #' 
-#' The item 'BIC' contains all BIC value for each K and beta. 
+#' The item 'gam' is the posterior probability matrix.
 #' 
-#' The item 'ell' is the opposite log-likelihood for each beta and K. 
+#' The item 'ell' is the opposite log-likelihood. 
 #' 
-#' The item 'mu' is the mean of each component for each beta and K.
+#' The item 'mu' is the mean of each component.
 #' 
-#' The item 'sigma' is the variance of each component for each beta and K.
+#' The item 'sigma' is the variance of each component.
 #' 
 #' @references Yang Y, Shi X, Zhou Q, et al. SC-MEB: spatial clustering with hidden Markov random field using empirical Bayes[J]. bioRxiv, 2021.
 #' @import mclust
@@ -187,21 +188,21 @@ SC.MEB <- function(y, Adj_sp, beta_grid = seq(0,4,0.2), K_set= 2:10, parallel=TR
 #' parafun.
 #' 
 #' @description
-#' parafun implements the model SC-MEB for fixed number of clusters
+#' The function parafun implements the model SC-MEB for fixed number of clusters and a sequence of beta with initial value from Gaussian mixture model
 #'
-#' @details SC.MEB implements the model SC-MEB, spatial clustering with hidden Markov random field using empirical Bayes. 
+#' @details The function parafun implements the model SC-MEB for fixed number of clusters and a sequence of beta with initial value from Gaussian mixture model 
 #' @param y is n-by-d PCs.
 #' @param Adj_sp is a sparse matrix of neighborhood. 
-#' @param G is an integer specifying the numbers of mixture components (clusters) for which the BIC is to be calculated. The default is K = 2:9. 
-#' @param platform is the name of spatial transcriptomic platform. Specify 'Visium' for hex lattice geometry or 'ST' for square lattice geometry. Specifying this parameter is optional as this information is included in their metadata. 
-#' @param bet_grid is a numeric vector specifying the smoothness parameter of Random Markov Field. The default is seq(0,4,0.2). 
+#' @param G is an integer specifying the numbers of clusters.
+#' @param beta_grid is a numeric vector specifying the smoothness parameter of Random Markov Field. The default is seq(0,4,0.2). 
+#' @param PX is a logical value specifying the parameter expansion in EM algorithm.
 #' @param maxIter_ICM is the maximum iteration of ICM algorithm. The default is 10. 
 #' @param maxIter is the maximum iteration of EM algorithm. The default is 50.
 #' @return a list, We briefly explain the output of the SC.MEB. 
 #'  
 #' The item 'x' storing clustering results.
 #' 
-#' The item 'BIC' contains all BIC value. 
+#' The item 'gam' is the posterior probability matrix.
 #' 
 #' The item 'ell' is the opposite log-likelihood. 
 #' 
@@ -225,16 +226,16 @@ parafun <- function(y, Adj, G, beta_grid = seq(0,4,0.2), PX = TRUE, maxIter_ICM=
 #' ICMEM.
 #' 
 #' @description
-#' ICMEM was used to conduct spatial clustering with hidden Markov random field for fixed beta and fixed number of clusters
+#' The function ICMEM was used to conduct spatial clustering with hidden Markov random field for a sequence of beta and fixed number of clusters
 #'
-#' @details ICMEM was used to conduct spatial clustering with hidden Markov random field for fixed beta and fixed number of clusters
+#' @details The function ICMEM was used to conduct spatial clustering with hidden Markov random field for fixed beta and fixed number of clusters
 #' @param y is a matrix of PCs containing gene expression.
 #' @param x_int is a vector of initial cluster label.
 #' @param Adj is a matrix containing neighborhood information generated by find_neighbors2.
 #' @param mu_int is a initial mean vector. we often generated it by Gaussian mixture model. 
 #' @param sigma_int is a initial co-variance matrix. we often generated it by Gaussian mixture model. 
 #' @param alpha is a intercept.
-#' @param beta_grid is a smoothing parameter that can be specified by user.
+#' @param beta_grid is a sequence of smoothing parameter that can be specified by user.
 #' @param PX is a logical value specifying the parameter expansion in EM algorithm.
 #' @param maxIter_ICM is the maximum iteration of ICM algorithm.
 #' @param maxIter is the maximum iteration of EM algorithm.

@@ -12,6 +12,11 @@ selectKPlot(SCobject, K_set = 2:10, criterion = "BIC", pen.const = 1)
 \item{K_set}{is the corresponding K_set used in your previous function SC.MEB.}
 
 \item{criterion}{is a character specifying the criterion for selecting K. The default is BIC, the alternative criterion MBIC can also be used.}
+
+\item{pen.const}{is a positive value in modified BIC. The default is 1.}
+}
+\value{
+a ggplot2 object.
 }
 \description{
 The function selectKPlot is used to demonstrate the scatter plot of BIC or Modified BIC vs K for selecting the best K.

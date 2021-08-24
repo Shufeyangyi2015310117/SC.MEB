@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SC.MEB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
       </span>
     </div>
 
@@ -74,7 +74,7 @@
       <h1 data-toc-skip>SC-MEB: CRC</h1>
                         <h4 data-toc-skip class="author">Yi Yang</h4>
             
-            <h4 data-toc-skip class="date">2021-08-22</h4>
+            <h4 data-toc-skip class="date">2021-08-24</h4>
       
       
       <div class="hidden name"><code>SC.MEB_CRC.Rmd</code></div>
@@ -126,7 +126,8 @@
 <h4 class="hasAnchor">
 <a href="#calculating-the-neighborhood" class="anchor" aria-hidden="true"></a>Calculating the neighborhood</h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Adj_sp</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_neighbors2.html">find_neighbors2</a></span><span class="op">(</span><span class="va">CRC</span>, platform <span class="op">=</span> <span class="st">"Visium"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SingleCellExperiment</span><span class="op">)</span>
+<span class="va">Adj_sp</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_neighbors2.html">find_neighbors2</a></span><span class="op">(</span><span class="va">CRC</span>, platform <span class="op">=</span> <span class="st">"Visium"</span><span class="op">)</span>
 <span class="va">Adj_sp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>
 <span class="co">#&gt; 10 x 10 sparse Matrix of class "dgCMatrix"</span>
 <span class="co">#&gt;                          </span>
@@ -154,8 +155,8 @@
 <span class="co">#&gt;  $ gam   : num [1:2988, 1:2] 1 1 1 1 1 ...</span>
 <span class="co">#&gt;  $ pxgn  : num [1:2988, 1:2] 0.9 0.996 0.988 0.999 0.988 ...</span>
 <span class="co">#&gt;  $ pygx  : num [1:2988, 1:2] 17.6 17.9 29.8 33.4 24 ...</span>
-<span class="co">#&gt;  $ mu    : num [1:15, 1:2] 4.3901 -0.5644 0.1234 -0.112 0.0292 ...</span>
-<span class="co">#&gt;  $ sigma : num [1:15, 1:15, 1:2] 5.1413 -1.8014 -1.6297 0.0905 -1.0883 ...</span>
+<span class="co">#&gt;  $ mu    : num [1:15, 1:2] 4.3903 -0.5645 0.1234 0.1119 -0.0293 ...</span>
+<span class="co">#&gt;  $ sigma : num [1:15, 1:15, 1:2] 5.1406 -1.801 -1.6299 -0.0897 1.0887 ...</span>
 <span class="co">#&gt;  $ beta  : num 2.2</span>
 <span class="co">#&gt;  $ ell   : num 65515</span>
 <span class="co">#&gt;  $ loglik: num [1:2, 1] 66216 66254</span></code></pre></div>
@@ -184,12 +185,12 @@
 <p>We can plot the cluster assignments over the spatial locations of the spots with ClusterPlot().</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">out</span> <span class="op">=</span> <span class="fu"><a href="../reference/selectK.html">selectK</a></span><span class="op">(</span><span class="va">fit</span>, K_set <span class="op">=</span> <span class="va">K_set</span>, criterion <span class="op">=</span> <span class="st">"BIC"</span><span class="op">)</span>
-<span class="va">pos</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">CRC</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span>,<span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">CRC</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2988</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="va">pos</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">CRC</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span>,<span class="fl">20000</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">CRC</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2988</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="../reference/ClusterPlot.html">ClusterPlot</a></span><span class="op">(</span><span class="va">out</span>, <span class="va">pos</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></code></pre></div>
 <p><img src="SC.MEB_CRC_files/figure-html/unnamed-chunk-9-1.png" width="700"> or</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">out</span> <span class="op">=</span> <span class="fu"><a href="../reference/selectK.html">selectK</a></span><span class="op">(</span><span class="va">fit</span>, K_set <span class="op">=</span> <span class="va">K_set</span>, criterion <span class="op">=</span> <span class="st">"MBIC"</span><span class="op">)</span>
-<span class="va">pos</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">CRC</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span>,<span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">CRC</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2988</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="va">pos</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">CRC</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span>,<span class="fl">20000</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">CRC</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2988</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="../reference/ClusterPlot.html">ClusterPlot</a></span><span class="op">(</span><span class="va">out</span>, <span class="va">pos</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></code></pre></div>
 <p><img src="SC.MEB_CRC_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>

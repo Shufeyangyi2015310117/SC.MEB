@@ -12,9 +12,11 @@ selectK(SCobject, K_set = 2:10, criterion = "BIC", pen.const = 1)
 \item{K_set}{is a integer vector used in SC.MEB. The default is 2:10}
 
 \item{criterion}{is a character specifying the criterion for selecting K. The default value is BIC. The alternative value MBIC can also be used.}
+
+\item{pen.const}{is a positive value in modified BIC. The default is 1.}
 }
 \value{
-a list contains two items. one is for the best K and the other corresponds to clustering labels of n spots.
+a list contains two items. one is for the best K and the other is the clustering labels of n spots.
 }
 \description{
 The function selectK is used to select the best K according to BIC or Modified BIC criterion.

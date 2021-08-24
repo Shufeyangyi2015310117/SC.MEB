@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SC.MEB</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.1</span>
       </span>
     </div>
 
@@ -146,11 +146,15 @@
       <th>criterion</th>
       <td><p>is a character specifying the criterion for selecting K. The default value is BIC. The alternative value MBIC can also be used.</p></td>
     </tr>
+    <tr>
+      <th>pen.const</th>
+      <td><p>is a positive value in modified BIC. The default is 1.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list contains two items. one is for the best K and the other corresponds to clustering labels of n spots.</p>
+    <p>a list contains two items. one is for the best K and the other is the clustering labels of n spots.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The function selectK is used to select the best K according to BIC or Modified BIC criterion.</p>

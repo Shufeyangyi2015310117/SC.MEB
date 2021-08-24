@@ -17,24 +17,24 @@ parafun(
 \arguments{
 \item{y}{is n-by-d PCs.}
 
-\item{G}{is an integer specifying the numbers of mixture components (clusters) for which the BIC is to be calculated. The default is K = 2:9.}
+\item{G}{is an integer specifying the numbers of clusters.}
+
+\item{beta_grid}{is a numeric vector specifying the smoothness parameter of Random Markov Field. The default is seq(0,4,0.2).}
+
+\item{PX}{is a logical value specifying the parameter expansion in EM algorithm.}
 
 \item{maxIter_ICM}{is the maximum iteration of ICM algorithm. The default is 10.}
 
 \item{maxIter}{is the maximum iteration of EM algorithm. The default is 50.}
 
 \item{Adj_sp}{is a sparse matrix of neighborhood.}
-
-\item{platform}{is the name of spatial transcriptomic platform. Specify 'Visium' for hex lattice geometry or 'ST' for square lattice geometry. Specifying this parameter is optional as this information is included in their metadata.}
-
-\item{bet_grid}{is a numeric vector specifying the smoothness parameter of Random Markov Field. The default is seq(0,4,0.2).}
 }
 \value{
 a list, We briefly explain the output of the SC.MEB. 
  
 The item 'x' storing clustering results.
 
-The item 'BIC' contains all BIC value. 
+The item 'gam' is the posterior probability matrix.
 
 The item 'ell' is the opposite log-likelihood. 
 
@@ -43,8 +43,8 @@ The item 'mu' is the mean of each component.
 The item 'sigma' is the variance of each component.
 }
 \description{
-parafun implements the model SC-MEB for fixed number of clusters
+The function parafun implements the model SC-MEB for fixed number of clusters and a sequence of beta with initial value from Gaussian mixture model
 }
 \details{
-SC.MEB implements the model SC-MEB, spatial clustering with hidden Markov random field using empirical Bayes.
+The function parafun implements the model SC-MEB for fixed number of clusters and a sequence of beta with initial value from Gaussian mixture model
 }
