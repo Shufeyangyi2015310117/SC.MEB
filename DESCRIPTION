@@ -20,3 +20,4 @@ Suggests:
     knitr,
     rmarkdown
 Encoding: UTF-8
+biocViews: Software, StatisticalMethod, Clustering
