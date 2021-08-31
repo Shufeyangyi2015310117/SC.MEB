@@ -8,10 +8,11 @@
 #' @param SCobject is an object generated from SC.MEB function.
 #' @param K_set is a integer vector used in SC.MEB. The default is 2:10
 #' @param criterion is a character specifying the criterion for selecting K. The default value is BIC. The alternative value MBIC can also be used.
-#' @param pen.const is a positive value in modified BIC. The default is 1. 
+#' @param c is a positive value in the modified BIC. The default is 1.
+#' Here we briefly explain how to choose the parameter c in the modified BIC. In general, For the ST or Visium dataset, it often ranges from 0.4 to 1 while for the MERFISH dataset with large number of cells, it often becomes larger, for example 10,20. Most importantly, SC-MEB is fast, scaling well in terms of sample size, which allow the user to tune the c based on their prior knowledge about the tissues or cells.
 #' @return a list contains two items. one is for the best K and the other is the clustering labels of n spots.
 #' @export
-selectK <- function(SCobject, K_set = 2:10, criterion = "BIC",  pen.const = 1){
+selectK <- function(SCobject, K_set = 2:10, criterion = "BIC",  c = 1){
   
   library(ggplot2)
   out = list()
@@ -37,7 +38,7 @@ selectK <- function(SCobject, K_set = 2:10, criterion = "BIC",  pen.const = 1){
     for (i in 1:num_K){
       q = K_set[i]
       dr <- q * p + p*(p + 1)/2 * q
-      MBIC[i] <- -2 * fit[[9*i-1]] - log(n) * dr *log(log(n + p))*pen.const
+      MBIC[i] <- -2 * fit[[9*i-1]] - log(n) * dr *log(log(n + p))*c
     }
     best_K_MBIC = K_set[which.max(MBIC)]
     out$best_K_MBIC = best_K_MBIC
@@ -97,10 +98,16 @@ ClusterPlot <- function(out, pos, size = 5, shape = 15){
 #' @param SCobject is a object generated from SC.MEB function.
 #' @param K_set is the corresponding K_set used in your previous function SC.MEB.
 #' @param criterion is a character specifying the criterion for selecting K. The default is BIC, the alternative criterion MBIC can also be used.
-#' @param pen.const is a positive value in modified BIC. The default is 1.  
+#' @param c is a positive value in modified BIC. The default is 1.  
+#' In general, For the ST or Visium data, it often ranges from 0.4 to 1 
+#' while for the MERFISH data with large number of cells, it often is larger. 
+#' For example 10,20.
+#' Most importantly, SC-MEB is fast, scaling well in terms of sample size, 
+#' which allow the user to tune the c based on their prior knowledge 
+#' about the tissues or cells.
 #' @return a ggplot2 object.
 #' @export
-selectKPlot <- function(SCobject, K_set = 2:10, criterion = "BIC",  pen.const = 1){
+selectKPlot <- function(SCobject, K_set = 2:10, criterion = "BIC",  c = 1){
   library(ggplot2)
   num_K = length(SCobject)/9
   p = dim(SCobject[[6]])[1]
@@ -122,7 +129,7 @@ selectKPlot <- function(SCobject, K_set = 2:10, criterion = "BIC",  pen.const = 
     for (i in 1:num_K){
       q = K_set[i]
       dr <- q * p + p*(p + 1)/2 * q
-      MBIC[i] <- -2 * fit[[9*i-1]] - log(n) * dr *log(log(n + p))*pen.const
+      MBIC[i] <- -2 * fit[[9*i-1]] - log(n) * dr *log(log(n + p))*c
     }
     mbic = data.frame(MBIC)   
     mbic$K = K_set

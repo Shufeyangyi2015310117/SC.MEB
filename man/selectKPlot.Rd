@@ -4,7 +4,7 @@
 \alias{selectKPlot}
 \title{selectKPlot.}
 \usage{
-selectKPlot(SCobject, K_set = 2:10, criterion = "BIC", pen.const = 1)
+selectKPlot(SCobject, K_set = 2:10, criterion = "BIC", c = 1)
 }
 \arguments{
 \item{SCobject}{is a object generated from SC.MEB function.}
@@ -13,7 +13,8 @@ selectKPlot(SCobject, K_set = 2:10, criterion = "BIC", pen.const = 1)
 
 \item{criterion}{is a character specifying the criterion for selecting K. The default is BIC, the alternative criterion MBIC can also be used.}
 
-\item{pen.const}{is a positive value in modified BIC. The default is 1.}
+\item{c}{is a positive value in modified BIC. The default is 1.
+Here we briefly explain how to choose the parameter c in the modified BIC. In general, For the ST or Visium dataset, it often ranges from 0.4 to 1 while for the MERFISH dataset with large number of cells, it often becomes larger, for example 10,20. Most importantly, SC-MEB is fast, scaling well in terms of sample size, which allow the user to tune the c based on their prior knowledge about the tissues or cells.}
 }
 \value{
 a ggplot2 object.

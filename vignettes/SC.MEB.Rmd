@@ -169,6 +169,7 @@ selectKPlot(fit, K_set = K_set, criterion = "BIC")
 ```
 
 #### Selecting the number of clusters using Modified BIC
+Here we briefly explain how to choose the parameter c in the modified BIC. In general, For the ST or Visium dataset, it often ranges from 0.4 to 1 while for the MERFISH dataset with large number of cells, it often becomes larger, for example 10,20. Most importantly, SC-MEB is fast, scaling well in terms of sample size, which allow the user to tune the c based on their prior knowledge about the tissues or cells.
 ```{r message=FALSE, warning=FALSE}
 selectKPlot(fit, K_set = K_set, criterion = "MBIC")
 ```
