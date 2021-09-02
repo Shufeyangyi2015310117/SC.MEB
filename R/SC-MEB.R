@@ -99,12 +99,7 @@ ClusterPlot <- function(out, pos, size = 5, shape = 15){
 #' @param K_set is the corresponding K_set used in your previous function SC.MEB.
 #' @param criterion is a character specifying the criterion for selecting K. The default is BIC, the alternative criterion MBIC can also be used.
 #' @param c is a positive value in modified BIC. The default is 1.  
-#' In general, For the ST or Visium data, it often ranges from 0.4 to 1 
-#' while for the MERFISH data with large number of cells, it often is larger. 
-#' For example 10,20.
-#' Most importantly, SC-MEB is fast, scaling well in terms of sample size, 
-#' which allow the user to tune the c based on their prior knowledge 
-#' about the tissues or cells.
+#' Here we briefly explain how to choose the parameter c in the modified BIC. In general, For the ST or Visium dataset, it often ranges from 0.4 to 1 while for the MERFISH dataset with large number of cells, it often becomes larger, for example 10,20. Most importantly, SC-MEB is fast, scaling well in terms of sample size, which allow the user to tune the c based on their prior knowledge about the tissues or cells.
 #' @return a ggplot2 object.
 #' @export
 selectKPlot <- function(SCobject, K_set = 2:10, criterion = "BIC",  c = 1){
