@@ -11,6 +11,15 @@ library(devtools)
 
 install_github("Shufeyangyi2015310117/SC.MEB")
 
+
+## SC.MEB is available through Bioconductor.
+
+# Install the Bioconductor package manager, if necessary
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("SC.MEB")
+
 # Demonstration
 
 For an example of typical SC.MEB usage, please see our [Package vignette](https://shufeyangyi2015310117.github.io/SC.MEB/index.html) for a demonstration and overview of the functions included in SC.MEB.
