@@ -11,7 +11,7 @@ Description: Spatial clustering with hidden markov random field fitted via EM al
 License: GPL-3
 Depends: 
     mclust,
-    R (>= 2.10)
+    R (>= 4.10)
 Imports: Rcpp (>= 1.0.6), SingleCellExperiment, purrr, Matrix
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.1.1
