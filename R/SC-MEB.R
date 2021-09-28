@@ -25,11 +25,11 @@ selectK <- function(SCobject, K_set = 2:10, criterion = "BIC",  c = 1){
     for (i in 1:num_K){
       q = K_set[i]
       dr <- q * p + p*(p + 1)/2 * q
-      BIC[i] <- -2 * fit[[9*i-1]] - log(n) * dr
+      BIC[i] <- -2 * SCobject[[9*i-1]] - log(n) * dr
     }
     best_K_BIC = K_set[which.max(BIC)]
     out$best_K_BIC = best_K_BIC
-    out$best_K_label = fit[[9*which.max(BIC)-8]]
+    out$best_K_label = SCobject[[9*which.max(BIC)-8]]
     return(out)
     
   }else if (criterion == "MBIC"){
@@ -38,11 +38,11 @@ selectK <- function(SCobject, K_set = 2:10, criterion = "BIC",  c = 1){
     for (i in 1:num_K){
       q = K_set[i]
       dr <- q * p + p*(p + 1)/2 * q
-      MBIC[i] <- -2 * fit[[9*i-1]] - log(n) * dr *log(log(n + p))*c
+      MBIC[i] <- -2 * SCobject[[9*i-1]] - log(n) * dr *log(log(n + p))*c
     }
     best_K_MBIC = K_set[which.max(MBIC)]
     out$best_K_MBIC = best_K_MBIC
-    out$best_K_label = fit[[9*which.max(MBIC)-8]]
+    out$best_K_label = SCobject[[9*which.max(MBIC)-8]]
     return(out)
   }
   
@@ -112,7 +112,7 @@ selectKPlot <- function(SCobject, K_set = 2:10, criterion = "BIC",  c = 1){
     for (i in 1:num_K){
       q = K_set[i]
       dr <- q * p + p*(p + 1)/2 * q
-      BIC[i] <- -2 * fit[[9*i-1]] - log(n) * dr
+      BIC[i] <- -2 * SCobject[[9*i-1]] - log(n) * dr
     }
     bic = data.frame(BIC)   
     bic$K = K_set
@@ -124,7 +124,7 @@ selectKPlot <- function(SCobject, K_set = 2:10, criterion = "BIC",  c = 1){
     for (i in 1:num_K){
       q = K_set[i]
       dr <- q * p + p*(p + 1)/2 * q
-      MBIC[i] <- -2 * fit[[9*i-1]] - log(n) * dr *log(log(n + p))*c
+      MBIC[i] <- -2 * SCobject[[9*i-1]] - log(n) * dr *log(log(n + p))*c
     }
     mbic = data.frame(MBIC)   
     mbic$K = K_set
